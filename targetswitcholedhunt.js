@@ -32,10 +32,12 @@ const main = async () => {
 
   try{
 
-    const apiAddress = 'https://api.target.com/fulfillment_aggregator/v1/fiats/83887639?key=ff457966e64d5e877fdbad070f276d18ecec4a01&nearby=92649&limit=5&requested_quantity=1&radius=50&include_only_available_stores=true';
+    const apiAddressWhite = 'https://api.target.com/fulfillment_aggregator/v1/fiats/83887639?key=ff457966e64d5e877fdbad070f276d18ecec4a01&nearby=92649&limit=5&requested_quantity=1&radius=50&include_only_available_stores=true';
+    const apiAddressRedBlue = 'https://api.target.com/fulfillment_aggregator/v1/fiats/83887640?key=ff457966e64d5e877fdbad070f276d18ecec4a01&nearby=92649&limit=5&requested_quantity=1&radius=50&include_only_available_stores=true'
     const testAddress = 'https://api.target.com/fulfillment_aggregator/v1/fiats/77464002?key=ff457966e64d5e877fdbad070f276d18ecec4a01&nearby=92649&limit=5&requested_quantity=1&radius=50&include_only_available_stores=true';
-    const jsonResponse = await callAPI(apiAddress);
-    const locations = getLocationsList(jsonResponse);
+    const jsonResponseWhite = await callAPI(apiAddressWhite);
+    const jsonResponseRedBlue = await callAPI(apiAddressRedBlue);
+    const locations = [...getLocationsList(jsonResponseWhite)];
     const isEmpty = locations.length === 0; 
     let numUpdates = 0;
     if(!isEmpty){
@@ -62,4 +64,4 @@ const main = async () => {
     db.save();
 }
 
-main();
+setInterval(main, 60000);
