@@ -1,0 +1,11 @@
+{
+  "name": "stockhunter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.0.0",
+    "node-json-db": "^1.4.1"
+  }
+}
